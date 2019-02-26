@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        debugg {
+            keyAlias 'debugg'
+            keyPassword 'debugg'
+            storePassword 'debugg'
+            storeFile file('C:/Documents/debug.jks')
+        }
+    }
+    compileSdkVersion rootProject.ext.compilVersions
+    defaultConfig {
+        applicationId "com.example.michael.myapplication"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            initWith debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_ENV", "\"http://yiba.com\""  //自定义String属性
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_ENV", "\"http://yiba.com\""  //自定义String属性
+        }
+        internal {
+            initWith debug
+          //  buildConfigField "String", "API_ENV", "\"http://yiba.com\""  //自定义String属性
+
+        }
+    }
+    flavorDimensions 'version'
+    productFlavors {
+        free {
+            applicationId "com.wawj.app.tt1"
+            dimension 'version'
+            resValue "string", "app_name", "wiwjDebug1"
+
+        }
+        paid {
+            applicationId "com.wawj.app.tt2"
+            dimension 'version'
+            resValue "string", "app_name", "wiwjDebug2"
+        }
+        china {
+            applicationId "com.wawj.app.tt3"
+            dimension 'version'
+            resValue "string", "app_name", "wiwjDebug3"
+        }
+        global {
+            applicationId "com.wawj.app.tt4"
+            dimension 'version'
+            resValue "string", "app_name", "wiwjDebug4"
+
+        }
+    }
+
+    defaultConfig {
+        //存放公共变量
+        buildConfigField 'String', 'COMMON', '"admin"'
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+}
+
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    // Okhttp库
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    // Retrofit库
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.4'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+}
