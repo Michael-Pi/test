@@ -2,12 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        debugg {
-            keyAlias 'debugg'
-            keyPassword 'debugg'
-            storePassword 'debugg'
-            storeFile file('C:/Documents/debug.jks')
-        }
+
     }
     compileSdkVersion rootProject.ext.compilVersions
     defaultConfig {
