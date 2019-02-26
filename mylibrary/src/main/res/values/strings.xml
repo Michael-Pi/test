@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Library</string>
+    <string name="title_activity_main_lib">MainLibActivity</string>
 </resources>
